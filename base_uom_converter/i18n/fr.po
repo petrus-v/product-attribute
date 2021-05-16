@@ -15,6 +15,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__ceil
+msgid "Ceil"
+msgstr "Supérieur"
+
+#. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter_line__coefficient
 msgid "Coefficient"
 msgstr "Coefficient"
@@ -86,7 +91,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__display_name
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter_line__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Libellé"
+
+#. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__floor
+msgid "Floor"
+msgstr "Inférieur"
 
 #. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__id
@@ -127,6 +137,43 @@ msgstr ""
 "Quantité maximum (inclu) exprimé dans l'unité d'origine du présent "
 "convertisseur (champ `from_uom_id`). Si la quantité à convertir est "
 "supérieur à cette valeur, le convertisseur ignore la ligne."
+
+#. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__none
+msgid "No rounding"
+msgstr "Pas d'arrondi (arrondi odoo)"
+
+#. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__round
+msgid "Normal rounding to integer"
+msgstr "Arrondi standard (entier)"
+
+#. module: base_uom_converter
+#: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__round_method
+msgid "Rounding method"
+msgstr "Méthode d'arrondi"
+
+#. module: base_uom_converter
+#: model:ir.model.fields,help:base_uom_converter.field_uom_converter__round_method
+msgid ""
+"Rounding method is applied at the end. This avoid to manage float where we "
+"wants manage unit of somethings. If you want convert flour to eggs with the "
+"following rule: 1 egg every 100g of flour set 1 line with coefficient to "
+"1/100. If round_method is ciel, entry is 101g result would be 2 eggs. If "
+"round_method is floor, entry is 101g result would be 1 egg. If round_method "
+"is round, entry is 149.9g result would be 1 egg. If round_method is round, "
+"entry is 150.1g result would be 2 eggs. "
+msgstr ""
+"Mathode d'arrondi est appliqué à la fin. L'objectif est d'éviter de gérer "
+"des nombre flottant pour des unité. Si vous souhaitez créer un "
+"correspondance entre une quantité de farine et le nombre d'oeuf avec 1 oeuf "
+"pour 100g de farine avec un ligne de barème ayant un coéficient de 1 oeuf "
+"pour 100 g (1/100). Si la méthode d'arrondi est supérieur et 101g de farine "
+"le résultat de la conversion sera 2 oeufs. Si la méthode d'arrondi est "
+"inférieur et 199g de farine le résultat de la conversion sera 1 oeuf. Si la "
+"méthode d'arrondi est standard et 149.9g de farine le résultat de la "
+"conversion sera 1 oeuf. Si la méthode d'arrondi est standard et 150.1g de "
+"farine le résultat de la conversion sera 2 oeufs."
 
 #. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__name
@@ -195,8 +242,9 @@ msgid ""
 "You can't convert %(uom)s (expected %(category)s uom category) to %(to_uom)s "
 "using this converter %(converter)s."
 msgstr ""
-"Vous ne pouvez pas convertir des %(uom)s (s'attend à une unité de mesure de la "
-"catégorie: %(category)s) en %(to_uom)s avec ce convertissuer: %(converter)s."
+"Vous ne pouvez pas convertir des %(uom)s (s'attend à une unité de mesure de "
+"la catégorie: %(category)s) en %(to_uom)s avec ce convertissuer: "
+"%(converter)s."
 
 #. module: base_uom_converter
 #: code:addons/base_uom_converter/models/uom_converter.py:0
@@ -205,8 +253,8 @@ msgid ""
 "You can't convert %(uom)s to %(to_uom)s (expect %(expected_category)s unit "
 "category) using this converter %(converter)s."
 msgstr ""
-"Vous ne pouvez pas convertir des %(uom)s en %(to_uom)s (s'attend à une unité de "
-"mesurede la catégorie %(expected_category)s) avec ce convertissuer: "
+"Vous ne pouvez pas convertir des %(uom)s en %(to_uom)s (s'attend à une unité "
+"de mesurede la catégorie %(expected_category)s) avec ce convertissuer: "
 "%(converter)s."
 
 #. module: base_uom_converter

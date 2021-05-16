@@ -85,6 +85,25 @@ class TestUomConverter(SavepointCase):
                 ],
             )
         )
+        cls.flour_to_eggs = cls.env["uom.converter"].create(
+            dict(
+                name="Flour to eggs - Kg to eggs",
+                from_uom_id=cls.env.ref("uom.product_uom_kgm").id,
+                to_uom_id=cls.env.ref("uom.product_uom_unit").id,
+                round_method="ceil",  # force later in test
+                line_ids=[
+                    (
+                        0,
+                        0,
+                        {
+                            "max_qty": 50,
+                            "coefficient": 1 / 0.1,  # One egg for 100g
+                            "constant": 0,
+                        },
+                    ),
+                ],
+            )
+        )
 
     def test_default_params(self):
         values = [
@@ -102,6 +121,28 @@ class TestUomConverter(SavepointCase):
                     result,
                     expected,
                     precision_rounding=self.egg_flow.to_uom_id.rounding,
+                ),
+                0,
+                msg=f"{id_test}: Converted qty ({result}) "
+                f"!= expected qty ({expected})",
+            )
+
+    def test_round_method(self):
+        values = [
+            [0.151, 1.51, "none", "test-no-rounding"],
+            [0.1499, 1, "round", "test-round-1"],
+            [0.1501, 2, "round", "test-round-2"],
+            [0.101, 2, "ceil", "test-ceil"],
+            [0.199, 1, "floor", "test-floor"],
+        ]
+        for qty, expected, rounded_method, id_test in values:
+            self.flour_to_eggs.round_method = rounded_method
+            result = self.flour_to_eggs.convert(qty)
+            self.assertEqual(
+                float_compare(
+                    result,
+                    expected,
+                    precision_rounding=self.flour_to_eggs.to_uom_id.rounding,
                 ),
                 0,
                 msg=f"{id_test}: Converted qty ({result}) "

@@ -9,6 +9,7 @@
                     <field name="name" />
                     <field name="from_uom_id" />
                     <field name="to_uom_id" />
+                    <field name="round_method" />
                 </tree>
             </field>
         </record>
@@ -32,9 +33,10 @@
                         <group name="uoms">
                             <group>
                                 <field name="from_uom_id" />
+                                <field name="to_uom_id" />
                             </group>
                             <group>
-                                <field name="to_uom_id" />
+                                <field name="round_method" />
                             </group>
                         </group>
                         <group name="scale_lines">

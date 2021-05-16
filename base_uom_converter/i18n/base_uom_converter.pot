@@ -14,6 +14,11 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__ceil
+msgid "Ceil"
+msgstr ""
+
+#. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter_line__coefficient
 msgid "Coefficient"
 msgstr ""
@@ -79,6 +84,11 @@ msgid "Display Name"
 msgstr ""
 
 #. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__floor
+msgid "Floor"
+msgstr ""
+
+#. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__id
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter_line__id
 msgid "ID"
@@ -113,6 +123,33 @@ msgid ""
 "Maximum quantity in the Source Unit of Measure of the current converter "
 "(`from_uom_id` field). If qty is higher to this value while converting "
 "quantity this line will be ignored"
+msgstr ""
+
+#. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__none
+msgid "No rounding"
+msgstr ""
+
+#. module: base_uom_converter
+#: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__round
+msgid "Normal rounding to integer"
+msgstr ""
+
+#. module: base_uom_converter
+#: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__round_method
+msgid "Rounding method"
+msgstr ""
+
+#. module: base_uom_converter
+#: model:ir.model.fields,help:base_uom_converter.field_uom_converter__round_method
+msgid ""
+"Rounding method is applied at the end. This avoid to manage float where we "
+"wants manage unit of somethings. If you want convert flour to eggs with the "
+"following rule: 1 egg every 100g of flour set 1 line with coefficient to "
+"1/100. If round_method is ciel, entry is 101g result would be 2 eggs. If "
+"round_method is floor, entry is 101g result would be 1 egg. If round_method "
+"is round, entry is 149.9g result would be 1 egg. If round_method is round, "
+"entry is 150.1g result would be 2 eggs. "
 msgstr ""
 
 #. module: base_uom_converter

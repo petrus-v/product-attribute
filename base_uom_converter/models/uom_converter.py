@@ -1,5 +1,7 @@
 # Copyright <2021> <pierreverkest84@gmail.com>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from math import ceil, floor
+
 from odoo import _, fields, models
 from odoo.exceptions import ValidationError
 
@@ -31,6 +33,26 @@ class UomConverter(models.Model):
         "uom.converter.line",
         "uom_converter_id",
         "UoM converter lines",
+    )
+    round_method = fields.Selection(
+        selection=[
+            ("none", "No rounding"),
+            ("ceil", "Ceil"),
+            ("round", "Normal rounding to integer"),
+            ("floor", "Floor"),
+        ],
+        string="Rounding method",
+        required=True,
+        readonly=False,
+        default="none",
+        help="Rounding method is applied at the end. This avoid to "
+        "manage float where we wants manage unit of somethings. If you "
+        "want convert flour to eggs with the following rule: 1 egg every "
+        "100g of flour set 1 line with coefficient to 1/100. "
+        "If round_method is ciel, entry is 101g result would be 2 eggs. "
+        "If round_method is floor, entry is 101g result would be 1 egg. "
+        "If round_method is round, entry is 149.9g result would be 1 egg. "
+        "If round_method is round, entry is 150.1g result would be 2 eggs. ",
     )
 
     def convert(self, quantity, uom_qty=None, result_uom=None):
@@ -97,6 +119,12 @@ class UomConverter(models.Model):
         result = quantity * convert_line.coefficient + convert_line.constant
         if result_uom.id != self.to_uom_id.id:
             result = self.to_uom_id._compute_quantity(result, result_uom)
+        if self.round_method == "ceil":
+            result = ceil(result)
+        elif self.round_method == "floor":
+            result = floor(result)
+        elif self.round_method == "round":
+            result = round(result)
         return result
 
 
