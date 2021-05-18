@@ -17,7 +17,7 @@ msgstr ""
 #. module: base_uom_converter
 #: model:ir.model.fields,help:base_uom_converter.field_uom_converter__description
 msgid "A human readable description"
-msgstr ""
+msgstr "Une description complémentaire."
 
 #. module: base_uom_converter
 #: model:ir.model.fields.selection,name:base_uom_converter.selection__uom_converter__round_method__ceil
@@ -79,7 +79,7 @@ msgstr "Créé le"
 #. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__description
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #. module: base_uom_converter
 #: model:ir.model.fields,field_description:base_uom_converter.field_uom_converter__to_uom_id
