@@ -54,6 +54,11 @@ class UomConverter(models.Model):
         "If round_method is round, entry is 149.9g result would be 1 egg. "
         "If round_method is round, entry is 150.1g result would be 2 eggs. ",
     )
+    description = fields.Text(
+        string="Description",
+        required=False,
+        help="A human readable description",
+    )
 
     def convert(self, quantity, uom_qty=None, result_uom=None):
         """Return quantity in to_uom_id or result_uom if set and in the same

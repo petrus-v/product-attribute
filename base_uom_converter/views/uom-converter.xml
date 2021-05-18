@@ -38,6 +38,7 @@
                             <group>
                                 <field name="round_method" />
                             </group>
+                            <field name="description" />
                         </group>
                         <group name="scale_lines">
                             <field name="line_ids" nolabel="1">
